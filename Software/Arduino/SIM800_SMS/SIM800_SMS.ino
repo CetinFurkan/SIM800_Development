@@ -1,7 +1,7 @@
 #include <SoftwareSerial.h>
 
 //Create software serial object to communicate with SIM800L
-SoftwareSerial mySerial(7,8); //SIM800L Tx & Rx is connected to Arduino #3 & #2
+SoftwareSerial mySerial(7,8);
 
 void setup()
 {
@@ -33,11 +33,13 @@ void loop()
 
 void updateSerial()
 {
-  delay(500);
+  delay(300);
   while (Serial.available()) 
   {
     mySerial.write(Serial.read());//Forward what Serial received to Software Serial Port
   }
+
+  delay(300);
   while(mySerial.available()) 
   {
     Serial.write(mySerial.read());//Forward what Software Serial received to Serial Port
